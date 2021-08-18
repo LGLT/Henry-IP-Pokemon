@@ -1,0 +1,13 @@
+.mainDiv{
+    background: url('https://www.publicdomainpictures.net/pictures/130000/velka/white-background.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    padding-top: 52%;
+}
+
+.divContainers{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

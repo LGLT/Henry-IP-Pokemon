@@ -1,9 +1,27 @@
-import './App.css';
+import Home from './components/Home';
+import {Route, Switch} from "react-router-dom";
+
+import Menu from './components/Menu';
+import Pokemons from './components/pokemons/Pokemons';
+import PokemonDetails from './components/pokemons/PokemonDetails';
 
 function App() {
   return (
     <div className="App">
-      <h1>Henry Pokemon</h1>
+      <Switch>
+        <Route exact path='/'>
+          <Home />
+        </Route>
+        <Route exact path='/menu'>
+          <Menu />
+        </Route>
+        <Route exact path='/pokemons'>
+          <Pokemons />
+        </Route>
+        <Route exact path='/pokemons/:pokemon'>
+          <PokemonDetails />
+        </Route>
+      </Switch>
     </div>
   );
 }
