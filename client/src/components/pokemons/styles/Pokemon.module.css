@@ -1,0 +1,9 @@
+.pokemonCard{
+    display: flex;
+    flex-direction: column;
+    background-color: lavender;
+}
+
+.title{
+    text-align: center;
+}
