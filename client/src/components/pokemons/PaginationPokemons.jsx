@@ -8,9 +8,12 @@ export default function PaginationPokemons({currentPokemons, loading}){
     return(
         <div className={styles.gridContainer}>
             {currentPokemons.map(p => 
-                (
-                <Pokemon key={p.id} name={p.name} id={p.id} />
-                )
+                {
+                // console.log(p);
+                if(p.url) return <Pokemon key={p.id} name={p.name} id={p.id} />
+                return <Pokemon key={p.id} name={p.name} id={p.id} localData={p}/>
+                }
+                
             )}
         </div>
     );

@@ -15,12 +15,17 @@ export default function Pokemon(props){
     const dispatch = useDispatch()
 
     useEffect(() => {
-        const getPokemonData = async () => {
-            const response = await axios.get(`http://localhost:3001/pokemons/${props.id}`);
-            setPokemonData(response.data);
+        if(props.localData){
+            setPokemonData([props.localData,{}])
             setLoading(false)
+        } else {
+            const getPokemonData = async () => {
+                const response = await axios.get(`http://localhost:3001/pokemons/${props.id}`);
+                setPokemonData(response.data);
+                setLoading(false)
+            }
+            getPokemonData();
         }
-        getPokemonData();
     },[])
 
     const pokemonDataToStore = () => {
@@ -45,8 +50,24 @@ export default function Pokemon(props){
             >
                 {capitalize(pokemonData[0].name)}
             </Link>
-            <img src={pokemonData[0].sprites.front_default} alt="img" />
-            <h5>Types: {pokemonData[0].types.map(t => <p key={t.type.name}>{t.type.name}</p>)}</h5>
+            { 
+            pokemonData[0].sprites
+            ?   <img src={pokemonData[0].sprites.front_default} alt="img" />
+            :   <h4>No image found.</h4>
+            }
+            
+            <h5>
+                Types: 
+                {pokemonData[0].types.map(t => 
+                    {
+                        return t.name 
+                            ? 
+                            <p key={t.name}>{t.name}</p> 
+                            : 
+                            <p key={t.type.name}>{t.type.name}</p>
+                    } 
+                )}
+            </h5>
         </div>
     );
 }

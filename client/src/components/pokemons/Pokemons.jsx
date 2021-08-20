@@ -57,13 +57,10 @@ export default function Pokemons(){
         event.preventDefault();
         if(event.type === "change"){                                    //  Guardar valor del input
             setFilterInput(event.target.value);
-            console.log(event)
-            console.log(event.target.value)
         }
         if(event.type === "submit"){                                    //  Encontrar pokemon filtrado
             pokemonsfromStore[0].map(p => { 
                 if(p.name.toLowerCase() === filterInput.toLowerCase()){
-                    console.log(p);
                     setFilteredPokemon(p);
                     setFilterInputActive(true);
                 }

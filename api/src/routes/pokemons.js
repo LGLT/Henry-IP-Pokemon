@@ -2,7 +2,14 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 const {Pokemon, Type} = require('../db')
-// const { Pokemon, Type } = require();
+
+var pokemonsId = [];
+//  Función generadora de ID para los pokemones creados
+const generatorId = () => {
+  let id = pokemonsId[pokemonsId.length-1]+1
+  pokemonsId.push(id);
+  return id;
+}
 
 
 /*################# GET TODOS LOS POKEMONS #################*/ 
@@ -19,6 +26,7 @@ router.get('/', async (req, res) => {
             let id = pokemon.url;
             id = id.substring(0, id.length -1);
             id = id.substring(id.lastIndexOf('/') + 1);
+            if(pokemonsId.indexOf(parseInt(id)) === -1) pokemonsId.push(parseInt(id))
             return parseInt(id);
       }
     
@@ -26,7 +34,7 @@ router.get('/', async (req, res) => {
         apiResponse.data.results.map(p => { 
           p.id = pokemonId(p)
           allPokemon.push(p); 
-        })
+        });
         try{
           apiResponse = await axios({
             url: apiResponse.data.next,
@@ -35,7 +43,21 @@ router.get('/', async (req, res) => {
         } catch (error){
           res.status(500).json({ message: error });
         }
+        if(!apiResponse.data.next){
+          apiResponse.data.results.map(p => { 
+            p.id = pokemonId(p)
+            allPokemon.push(p); 
+          });
+          break;
+        } 
       }
+
+      const dbPokemons = await Pokemon.findAll({
+        include: Type
+      });
+      
+      dbPokemons.map(p => allPokemon.push(p))
+      console.log(dbPokemons);
       res.status(200).json(allPokemon);
   
     } catch (error){
@@ -43,7 +65,7 @@ router.get('/', async (req, res) => {
     }
   });
   
-  /////////////////////////////////////////// GET LA INFO DE UN POKEMON
+/*################# GET LA INFO DE UN POKEMON #################*/ 
   router.get('/:pokemonId', async (req, res) => {
     const id = req.params.pokemonId;
     try{
@@ -59,12 +81,14 @@ router.get('/', async (req, res) => {
     
   });
 
-  router.post('/create', async function(req, res) {
-    const {nombre, vida, fuerza, defensa, velocidad, altura, peso, tipo} = req.body;
+  /*################# CREAR UN NUEVO POKEMON #################*/ 
+  router.post('/', async function(req, res) {
+    const {name, vida, fuerza, defensa, velocidad, altura, peso, tipo} = req.body;
 
     const [pokemon, pokemonCreated] = await Pokemon.findOrCreate({
       where: {
-        nombre,
+        id: generatorId(),
+        name,
         vida,
         fuerza,
         defensa,
@@ -76,14 +100,14 @@ router.get('/', async (req, res) => {
 
     const [type, typeCreated] = await Type.findOrCreate({
       where: {
-        nombre: tipo
+        name: tipo
       }
     });
 
     await pokemon.addType(type);
     await type.addPokemon(pokemon);
-
-    res.redirect("http://localhost:3000/")
+    console.log([pokemonsId[pokemonsId.length-1]])
+    res.redirect("http://localhost:3000/pokemons")
   })
 
   module.exports = router;

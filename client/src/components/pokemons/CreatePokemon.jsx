@@ -3,37 +3,37 @@ import React from 'react';
 export default function CreatePokemon () {
     return (
         <div>
-            <form method="POST" action="http://localhost:3001/pokemons/create">
+            <form method="POST" action="http://localhost:3001/pokemons">
                 <div>
-                    <label for="Nombre">Nombre</label>
-                    <input name="nombre" type="text" />
+                    <label htmlFor="Name">Name</label>
+                    <input name="name" type="text" />
                 </div>
                 <div>
-                    <label for="Vida">Vida</label>
+                    <label htmlFor="Vida">Vida</label>
                     <input name="vida" type="text" />
                 </div>
                 <div>
-                    <label for="Fuerza">Fuerza</label>
+                    <label htmlFor="Fuerza">Fuerza</label>
                     <input name="fuerza" type="text" />
                 </div>
                 <div>
-                    <label for="Defensa">Defensa</label>
+                    <label htmlFor="Defensa">Defensa</label>
                     <input name="defensa" type="text" />
                 </div>
                 <div>
-                    <label for="Velocidad">Velocidad</label>
+                    <label htmlFor="Velocidad">Velocidad</label>
                     <input name="velocidad" type="text" />
                 </div>
                 <div>
-                    <label for="Altura">Altura</label>
+                    <label htmlFor="Altura">Altura</label>
                     <input name="altura" type="text" />
                 </div>
                 <div>
-                    <label for="Peso">Peso</label>
+                    <label htmlFor="Peso">Peso</label>
                     <input name="peso" type="text" />
                 </div>
                 <div>
-                    <label for="Tipo">Tipo</label>
+                    <label htmlFor="Tipo">Tipo</label>
                     <input name="tipo" type="text" />
                 </div>
                 <button type="submit">SUBMIT</button>
