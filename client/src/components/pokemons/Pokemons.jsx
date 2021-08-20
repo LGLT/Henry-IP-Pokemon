@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios'
+import { Link } from 'react-router-dom';
 import PaginationPokemons from './PaginationPokemons';
 import PaginationChangePage from './PaginationChangePage';
 
@@ -87,6 +88,7 @@ export default function Pokemons(){
                     </div>
                     : 
                     <div>
+                        <Link to="/pokemons/createPokemon"><button>Create Pokemon</button></Link>
                     <div>
                         <form onSubmit={handleSubmit}>
                             <input type="text" placeholder='Pokemon name' onChange={handleSubmit} />

@@ -4,6 +4,7 @@ import {Route, Switch} from "react-router-dom";
 import Menu from './components/Menu';
 import Pokemons from './components/pokemons/Pokemons';
 import PokemonDetails from './components/pokemons/PokemonDetails';
+import CreatePokemon from './components/pokemons/CreatePokemon';
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
         </Route>
         <Route exact path='/pokemons'>
           <Pokemons />
+        </Route>
+        <Route exact path='/pokemons/createPokemon'>
+          <CreatePokemon />
         </Route>
         <Route exact path='/pokemons/:pokemon'>
           <PokemonDetails />
