@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom';
 
@@ -7,32 +6,22 @@ import { useDispatch } from 'react-redux';
 
 import styles from './styles/Pokemon.module.css'
 
-export default function Pokemon(props){
-    //const {name, id} = props;
+export default function Pokemon({name, id, info, localData}){
     const [pokemonData, setPokemonData] = useState()
-    const [loading, setLoading] = useState(true)
-    //  Hook para el dispatch
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if(props.localData){
-            setPokemonData([props.localData,{}])
-            setLoading(false)
-        } else {
-            const getPokemonData = async () => {
-                const response = await axios.get(`http://localhost:3001/pokemons/${props.id}`);
-                setPokemonData(response.data);
-                setLoading(false)
-            }
-            getPokemonData();
+        if(localData){
+            setPokemonData(localData);
+        } 
+        else {
+            setPokemonData([name, id, info]);
         }
-    },[])
+    },[name, id, info, localData])
 
     const pokemonDataToStore = () => {
-        dispatch(addActualPokemonData(pokemonData[0]))
+        dispatch(addActualPokemonData(pokemonData))
     }
-
-    if(loading) return <h3>Loading</h3>
 
     //  Método para cambiar la primera letra del pokemon a mayúscula
     const capitalize = (name) =>{
@@ -40,34 +29,46 @@ export default function Pokemon(props){
         name = name.slice(1,name.length);
         return mayus.toUpperCase().concat(name)
     }
-
+    
     return (
         <div className={styles.pokemonCard}>
-            <Link 
-                to={`/pokemons/${props.name}`} 
-                onClick={() => pokemonDataToStore()}
-                className={styles.title} 
-            >
-                {capitalize(pokemonData[0].name)}
-            </Link>
-            { 
-            pokemonData[0].sprites
-            ?   <img src={pokemonData[0].sprites.front_default} alt="img" />
-            :   <h4>No image found.</h4>
+            {
+                localData
+                ?
+                
+                <>{console.log(localData)}
+                    <Link 
+                    to={`/pokemons/${name}`} 
+                    onClick={() => pokemonDataToStore()}
+                    className={styles.title} 
+                    >
+                    {capitalize(name)}
+                    </Link>
+                    <h3>Img not found.</h3>
+                    <h5>
+                        Types: {localData.types.map(t => <p key={t.name}>{t.name}</p> )}
+                    </h5>
+                </>
+                      
+                :
+                info 
+                    ?
+                    <>
+                        <Link 
+                        to={`/pokemons/${name}`} 
+                        onClick={() => pokemonDataToStore()}
+                        className={styles.title} 
+                        >
+                        {capitalize(name)}
+                        </Link>
+                        <img src={info.data[0].sprites.front_default} alt="img" />
+                        <h5>
+                            Types: {info.data[0].types.map(t => <p key={t.type.name}>{t.type.name}</p> )}
+                        </h5>
+                    </>
+                    :
+                    <h6>Loading data...</h6>                    
             }
-            
-            <h5>
-                Types: 
-                {pokemonData[0].types.map(t => 
-                    {
-                        return t.name 
-                            ? 
-                            <p key={t.name}>{t.name}</p> 
-                            : 
-                            <p key={t.type.name}>{t.type.name}</p>
-                    } 
-                )}
-            </h5>
         </div>
-    );
+        );
 }
