@@ -26,11 +26,24 @@ export default function Pagination () {
                 if(filter === "strongest"){
                     filteredPokemons = pokemonsfromStore[0].slice(0);
                     filteredPokemons.sort((a, b) => {
-                        let powerA = a.info ? a.info.data[0].stats[1].base_stat : parseInt(a.fuerza);
-                        let powerB = b.info ? b.info.data[0].stats[1].base_stat : parseInt(b.fuerza);
+                        let powerA = a.info ? a.info.data[0].stats[1].base_stat : a.attack;
+                        let powerB = b.info ? b.info.data[0].stats[1].base_stat : b.attack;
 
                         if (powerA < powerB) return 1;
                         if (powerA > powerB) return -1;
+                        return 0;
+                    })
+                    
+                    return filteredPokemons;
+                }
+                if(filter === "strongestDes"){
+                    filteredPokemons = pokemonsfromStore[0].slice(0);
+                    filteredPokemons.sort((a, b) => {
+                        let powerA = a.info ? a.info.data[0].stats[1].base_stat : a.attack;
+                        let powerB = b.info ? b.info.data[0].stats[1].base_stat : b.attack;
+
+                        if (powerA > powerB) return 1;
+                        if (powerA < powerB) return -1;
                         return 0;
                     })
                     
@@ -41,6 +54,15 @@ export default function Pagination () {
                     filteredPokemons.sort((a, b) => {
                         if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
                         if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+                        return 0;
+                    })
+                    return filteredPokemons;
+                }
+                if(filter === "nameDes"){
+                    filteredPokemons = pokemonsfromStore[0].slice(0);
+                    filteredPokemons.sort((a, b) => {
+                        if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
+                        if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
                         return 0;
                     })
                     return filteredPokemons;

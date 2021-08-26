@@ -23,12 +23,14 @@ export default function FilterByType() {
                 <select onChange={functionFilterBy} name="filterBy" id="filterBy">
                     <option value="none">None</option>
                     <option value="created">Created Pokemon</option>
-                    <option value="name">Name</option>
-                    <option value="strongest">Strongest</option>
+                    <option value="name">Name (ASC)</option>
+                    <option value="nameDes">Name (DES)</option>
+                    <option value="strongest">Strongest (ASC)</option>
+                    <option value="strongestDes">Strongest (DES)</option>
                     <option value="normal">Type: normal</option>
-                    <option value="fighting">Type: fighting"</option>
-                    <option value="flying">Type: flying"</option>
-                    <option value="poison">Type: poison"</option>
+                    <option value="fighting">Type: fighting</option>
+                    <option value="flying">Type: flying</option>
+                    <option value="poison">Type: poison</option>
                     <option value="ground">Type: ground</option>
                     <option value="rock">Type: rock</option>
                     <option value="bug">Type: bug</option>

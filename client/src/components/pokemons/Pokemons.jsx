@@ -14,14 +14,17 @@ import FilterByName from './FilterByName';
 export default function Pokemons(){
     //  Variables exclusivas del componente
     const [loading, setLoading] = useState(true);
-    
     //  Hook para el dispatch
     const dispatch = useDispatch()
     //  Hooks para obtener los valores de la store
-    const pokemonsfromStore = useSelector(store => store.allStorePokemons);
+    // const pokemonsfromStore = useSelector(store => store.allStorePokemons);
     const loadStorePokemons = useSelector(store => store.loadStorePokemons);
     const filteredPokemonByName = useSelector(store => store.filteredPokemonByName);
     const loadFilteredPokemonByName = useSelector(store => store.loadFilteredPokemonByName);
+
+    useEffect(() => {
+        axios.get('http://localhost:3001/types')
+    },[])
 
 
     useEffect(() => {
