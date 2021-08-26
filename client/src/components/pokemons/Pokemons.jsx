@@ -14,10 +14,6 @@ import FilterByName from './FilterByName';
 export default function Pokemons(){
     //  Variables exclusivas del componente
     const [loading, setLoading] = useState(true);
- 
-    const [filterInput, setFilterInput] = useState(false);
-
-    const [filterOption, setfilterOption] = useState("")
     
     //  Hook para el dispatch
     const dispatch = useDispatch()
@@ -33,9 +29,10 @@ export default function Pokemons(){
         if(loadStorePokemons === false){
             const getPokemons = async () => {
                 await axios.get('http://localhost:3001/pokemons')
-                    .then(async data => await data.data.slice(0,40))
+                    // .then(async data => await data.data.slice(0,40))
+                    .then(async data => await data.data.slice(0))
                     .then(async data => {
-                        await data.map(async p => p.info = await axios.get(`http://localhost:3001/pokemons/${p.id}`));
+                        await data.map(async p => p.url ? p.info = await axios.get(`http://localhost:3001/pokemons/${p.id}`) : 0);
                         dispatch(addAllPokemonsToStore(data))
                     })
             }
@@ -45,7 +42,7 @@ export default function Pokemons(){
         if(loadStorePokemons === true){
             setLoading(false)
         }
-    }, [dispatch, loadStorePokemons, filterOption, loadFilteredPokemonByName]);
+    }, [dispatch, loadStorePokemons, loadFilteredPokemonByName]);
     
 
     if(loading){

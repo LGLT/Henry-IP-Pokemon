@@ -5,7 +5,7 @@ import PaginationPokemons from './PaginationPokemons';
 import PaginationChangePage from './PaginationChangePage';
 
 
-export default function Pagination ({filter}) {
+export default function Pagination () {
     const [currentPage, setCurrentPage] = useState(1);
     const [pokemonsPerPage] = useState(12);
 
@@ -19,8 +19,35 @@ export default function Pagination ({filter}) {
         if(pokemonsfromStore) { 
             if(filter){
                 let filteredPokemons = [];
+                if(filter === "created"){
+                    pokemonsfromStore[0].forEach( p => p.info ? 0 : filteredPokemons.push(p))
+                    return filteredPokemons;
+                }
+                if(filter === "strongest"){
+                    filteredPokemons = pokemonsfromStore[0].slice(0);
+                    filteredPokemons.sort((a, b) => {
+                        let powerA = a.info ? a.info.data[0].stats[1].base_stat : parseInt(a.fuerza);
+                        let powerB = b.info ? b.info.data[0].stats[1].base_stat : parseInt(b.fuerza);
+
+                        if (powerA < powerB) return 1;
+                        if (powerA > powerB) return -1;
+                        return 0;
+                    })
+                    
+                    return filteredPokemons;
+                }
+                if(filter === "name"){
+                    filteredPokemons = pokemonsfromStore[0].slice(0);
+                    filteredPokemons.sort((a, b) => {
+                        if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+                        if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+                        return 0;
+                    })
+                    return filteredPokemons;
+                }
                 pokemonsfromStore[0].forEach( p => {
-                    p.info.data[0].types.forEach( t => t.type.name === filter ?  filteredPokemons.push(p) : 0 )
+                    // console.log(p)
+                    if(p.url) p.info.data[0].types.forEach( t => t.type.name === filter ?  filteredPokemons.push(p) : 0 )
                 })
                 return filteredPokemons;
             }

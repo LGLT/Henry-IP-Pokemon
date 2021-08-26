@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import Pokemon from './Pokemon';
 
 import styles from './styles/PaginationPokemons.module.css'

@@ -14,27 +14,27 @@ export default function CreatePokemon () {
                 </div>
                 <div>
                     <label htmlFor="Fuerza">Fuerza</label>
-                    <input name="fuerza" type="text" />
+                    <input name="fuerza" type="number" />
                 </div>
                 <div>
                     <label htmlFor="Defensa">Defensa</label>
-                    <input name="defensa" type="text" />
+                    <input name="defensa" type="number" />
                 </div>
                 <div>
                     <label htmlFor="Velocidad">Velocidad</label>
-                    <input name="velocidad" type="text" />
+                    <input name="velocidad" type="number" />
                 </div>
                 <div>
                     <label htmlFor="Altura">Altura</label>
-                    <input name="altura" type="text" />
+                    <input name="altura" type="number" />
                 </div>
                 <div>
                     <label htmlFor="Peso">Peso</label>
-                    <input name="peso" type="text" />
+                    <input name="peso" type="number" />
                 </div>
                 <div>
                     <label htmlFor="Tipo">Tipo</label>
-                    <input name="tipo" type="text" />
+                    <input name="tipo" type="number" />
                 </div>
                 <button type="submit">SUBMIT</button>
             </form>

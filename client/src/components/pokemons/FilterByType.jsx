@@ -5,7 +5,6 @@ import {useDispatch, useSelector} from 'react-redux'
 import { addFilterType } from '../../redux/actions';
 
 export default function FilterByType() {
-    const [filterOption, setfilterOption] = useState("")
     const dispatch = useDispatch()
     const filterByType = useSelector(store => store.filterByType);
 
@@ -15,13 +14,17 @@ export default function FilterByType() {
         else dispatch(addFilterType(event.target.value))
         return
     }
-
-
+    
+    
     return (
         <div>
             <form onSubmit={functionFilterBy}>
                 <label>Filter by </label>
                 <select onChange={functionFilterBy} name="filterBy" id="filterBy">
+                    <option value="none">None</option>
+                    <option value="created">Created Pokemon</option>
+                    <option value="name">Name</option>
+                    <option value="strongest">Strongest</option>
                     <option value="normal">Type: normal</option>
                     <option value="fighting">Type: fighting"</option>
                     <option value="flying">Type: flying"</option>
@@ -40,7 +43,6 @@ export default function FilterByType() {
                     <option value="dragon">Type: dragon</option>
                     <option value="dark">Type: dark</option>
                     <option value="fairy">Type: fairy</option>
-                    <option value="none">None</option>
                 </select>
                 <button onSubmit={functionFilterBy}>Filtrado</button>
             </form>
