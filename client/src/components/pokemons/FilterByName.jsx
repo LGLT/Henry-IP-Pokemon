@@ -3,6 +3,8 @@ import {useDispatch, useSelector} from 'react-redux'
 
 import { addFilteredPokemon } from '../../redux/actions';
 
+import styles from './styles/FilterByName.module.css'
+
 export default function FilterByName () {
     const [filterInput, setFilterInput] = useState("");
 
@@ -18,7 +20,6 @@ export default function FilterByName () {
         if(event.type === "submit"){                                    //  Encontrar pokemon filtrado
             pokemonsfromStore[0].forEach(p => { 
                 if(p.name.toLowerCase() === filterInput.toLowerCase()){
-                    console.log(p)
                     dispatch(addFilteredPokemon(p))
                 }
             })   
@@ -26,10 +27,10 @@ export default function FilterByName () {
     }
 
     return (
-        <div>
+        <div className={styles.mainDiv}>
             <form onSubmit={handleSubmit}>
-                <input type="text" placeholder='Pokemon name' onChange={handleSubmit} />
-                <button onSubmit={handleSubmit}>Search</button>
+                <input type="text" placeholder='Pokemon name' onChange={handleSubmit} className={styles.inputSearch}/>
+                <button onSubmit={handleSubmit} className={styles.btnSearch} >Search</button>
             </form>
         </div>
     );

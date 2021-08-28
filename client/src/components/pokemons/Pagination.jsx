@@ -79,10 +79,6 @@ export default function Pagination () {
     } 
     const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
-    useEffect(() => {
-
-    },[filterByType])
-
     return (
         <div>
             {

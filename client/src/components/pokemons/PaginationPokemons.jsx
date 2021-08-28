@@ -4,7 +4,7 @@ import Pokemon from './Pokemon';
 import styles from './styles/PaginationPokemons.module.css'
 
 export default function PaginationPokemons({currentPokemons}){
-    // console.log(currentPokemons)
+    // currentPokemons.map(p => console.log(p.info))
     return(
         <div className={styles.gridContainer}>
             {currentPokemons.map(p => 

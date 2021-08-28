@@ -45,7 +45,7 @@ export default function Pokemons(){
         if(loadStorePokemons === true){
             setLoading(false)
         }
-    }, [dispatch, loadStorePokemons, loadFilteredPokemonByName]);
+    }, [dispatch, loadStorePokemons]);
     
 
     if(loading){
@@ -54,24 +54,31 @@ export default function Pokemons(){
     
     if(!loading){
         return(
-            <div>
+            <div className={styles.mainDiv}>
             {/* {console.log(pokemonsfromStore[0])} */}
-            {
-                loadFilteredPokemonByName
-                ?
-                <div className={styles.filteredPokemon}>
-                    <Pokemon key={filteredPokemonByName[0].id} name={filteredPokemonByName[0].name} id={filteredPokemonByName[0].id} info={filteredPokemonByName[0].info}/>
-                    <button onClick={() => dispatch(setLoadFilteredPokemonByName(false))}>X</button>
-                </div>
-                : 
-                <></> 
-            }
-                <div><Link to="/pokemons/createPokemon"><button>Create Pokemon</button></Link><div>
-                <FilterByName /> 
-                </div>
-                    <FilterByType />
-                    <Pagination /> 
-                </div>
+            <div className={styles.filteredPokemonAndFilters}>
+                {
+                    loadFilteredPokemonByName
+                    ?
+                    <div className={styles.filteredPokemon}> 
+                    {
+                        filteredPokemonByName[0].info 
+                            ? <Pokemon key={filteredPokemonByName[0].id} name={filteredPokemonByName[0].name} id={filteredPokemonByName[0].id} info={filteredPokemonByName[0].info} filtered={filteredPokemonByName[0]}/> 
+                            : <Pokemon key={filteredPokemonByName[0].id} name={filteredPokemonByName[0].name} id={filteredPokemonByName[0].id} localData={filteredPokemonByName[0]} filtered={filteredPokemonByName[0]}/>
+                    }
+                        <button onClick={() => dispatch(setLoadFilteredPokemonByName(false))}>X</button>
+                    </div>
+                    : 
+                    <></> 
+                }
+                    
+                    <div className={styles.filtersContainer}>
+                        <Link to="/pokemons/createPokemon"><button className={styles.btnCreatePokemon}>Create Pokemon</button></Link>
+                        <FilterByName /> 
+                        <FilterByType />
+                    </div>
+            </div>
+                <Pagination />         
             </div>
         );
     }

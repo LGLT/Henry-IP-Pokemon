@@ -6,8 +6,12 @@ import { useDispatch } from 'react-redux';
 
 import styles from './styles/Pokemon.module.css'
 
-export default function Pokemon({name, id, info, localData}){
+import icons from './importTypesIcons'
+
+
+export default function Pokemon({name, id, info, localData, filtered}){
     const [pokemonData, setPokemonData] = useState()
+    const [type, setType] = useState("")
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -30,42 +34,130 @@ export default function Pokemon({name, id, info, localData}){
         return mayus.toUpperCase().concat(name)
     }
     
+    const findIcon = (typeName) => {
+        typeName = typeName+"Icon"
+        return <img src={icons[typeName]} alt="" />
+    }
+
     return (
         <div className={styles.pokemonCard}>
             {
                 localData
                 ?
-                
-                <>{console.log(localData)}
-                    <Link 
-                    to={`/pokemons/${name}`} 
-                    onClick={() => pokemonDataToStore()}
-                    className={styles.title} 
-                    >
-                    {capitalize(name)}
-                    </Link>
-                    <h3>Img not found.</h3>
-                    <h5>
-                        Types: {localData.types.map(t => <p key={t.name}>{t.name}</p> )}
-                    </h5>
-                </>
+                    filtered
+                    ?
+                    <>
+                        <div className={styles.filteredPokemon}>
+                            <div className={styles.filteredPokemonTitleAndImg}>
+                                <div className={styles.titleDiv}>
+                                    <Link to={`/pokemons/${name}`} onClick={() => pokemonDataToStore()} className={styles.title} >
+                                        {capitalize(name)}
+                                    </Link>
+                                </div>
+                                <div><h3>Img not found.</h3> </div>
+                            </div>                        
+                            <div className={styles.filteredPokemonTypesDiv}>
+                                <h5 className={styles.titleTypes}>Types:</h5>
+                                <div className={styles.filteredPokemonTypesContainer}>
+                                    {
+                                    localData.types.map(t => 
+                                        {return (
+                                            <div className={styles.typeContainer}>
+                                                <p key={t.name}>{capitalize(t.name)}</p> 
+                                                    {findIcon(t.name)}
+                                            </div>
+                                        );}
+                                    )
+                                    }
+                                </div>
+                            </div>
+                        </div>    
+                        </>
+                    :
+                    <>
+                        <div className={styles.titleDiv}>
+                            <Link to={`/pokemons/${name}`} onClick={() => pokemonDataToStore()} className={styles.title} >
+                                {capitalize(name)}
+                            </Link>
+                        </div>
+                        <h3>Img not found.</h3>
+                        <div className={styles.typesDiv}>
+                            <h5 className={styles.titleTypes}>Types:</h5>
+                            <div className={styles.typesContainer}>
+                                {
+                                localData.types.map(t => 
+                                    {return (
+                                        <div className={styles.typeContainer}>
+                                            <p key={t.name}>{capitalize(t.name)}</p> 
+                                                {findIcon(t.name)}
+                                        </div>
+                                    );}
+                                )
+                                }
+                            </div>
+                        </div>
+                    </>
                       
                 :
                 info 
                     ?
-                    <>
-                        <Link 
-                        to={`/pokemons/${name}`} 
-                        onClick={() => pokemonDataToStore()}
-                        className={styles.title} 
-                        >
-                        {capitalize(name)}
-                        </Link>
-                        <img src={info.data[0].sprites.front_default} alt="img" />
-                        <h5>
-                            Types: {info.data[0].types.map(t => <p key={t.type.name}>{t.type.name}</p> )}
-                        </h5>
-                    </>
+                    filtered
+                        ?
+                        <>
+                        <div className={styles.filteredPokemon}>
+                            <div className={styles.filteredPokemonTitleAndImg}>
+                                <div className={styles.titleDiv}>
+                                    <Link to={`/pokemons/${name}`} onClick={() => pokemonDataToStore()} className={styles.title} >
+                                        {capitalize(name)}
+                                    </Link>
+                                </div>
+                                <div>
+                                    <img src={info.data[0].sprites.front_default} alt="img" className={styles.img}/>
+                                </div>
+                            </div>                        
+                            <div className={styles.filteredPokemonTypesDiv}>
+                                <h5 className={styles.titleTypes}>Types:</h5>
+                                <div className={styles.filteredPokemonTypesContainer}>
+                                    {
+                                    info.data[0].types.map(t => 
+                                        {return (
+                                            <div className={styles.typeContainer}>
+                                                <p key={t.type.name}>{capitalize(t.type.name)}</p> 
+                                                {findIcon(t.type.name)}
+                                            </div>
+                                        );}
+                                    )
+                                    }
+                                </div>
+                            </div>
+                        </div>    
+                        </>
+                        :
+                        <>
+                            <div className={styles.titleDiv}>
+                                <Link to={`/pokemons/${name}`} onClick={() => pokemonDataToStore()} className={styles.title} >
+                                    {capitalize(name)}
+                                </Link>
+                            </div>
+                            <div>
+                                <img src={info.data[0].sprites.front_default} alt="img" className={styles.img}/>
+                            </div>
+                            <div className={styles.typesDiv}>
+                                <h5 className={styles.titleTypes}>Types:</h5>
+                                <div className={styles.typesContainer}>
+                                    {
+                                    info.data[0].types.map(t => 
+                                        {return (
+                                            <div className={styles.typeContainer}>
+                                                <p key={t.type.name}>{capitalize(t.type.name)}</p> 
+                                                {findIcon(t.type.name)}
+                                            </div>
+                                        );}
+                                    )
+                                    }
+                                </div>
+                            </div>
+                        </>
                     :
                     <h6>Loading data...</h6>                    
             }

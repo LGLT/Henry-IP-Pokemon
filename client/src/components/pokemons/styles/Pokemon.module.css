@@ -1,9 +1,82 @@
 .pokemonCard{
     display: flex;
     flex-direction: column;
-    background-color: lavender;
+    background-color: #c2d5e4;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 14px;
 }
 
 .title{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: xx-large;
+}
+
+.titleDiv{
+    display: flex;
+    justify-content: center;
+}
+
+.img{
+    display: flex;
+    margin: auto;
+    background-image: url('../../../img/pokemonBg.gif');
+    background-size: cover;
+    margin-top: 10px;
+    width: 100%;
+    border-top-style: solid;
+    border-bottom-style: solid;
+}
+
+.typesDiv{
+    display: flex;
+    flex-direction: column;
+}
+
+.typesContainer{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0px, 60px));
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.titleTypes{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.typeContainer{
+    display: flex;
+    flex-direction: column;
     text-align: center;
+}
+
+.filteredPokemon{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.filteredPokemonTitleAndImg{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    justify-content: center;
+    padding-left: 10px;
+}
+
+.filteredPokemonTypesDiv{
+    display: flex;
+    flex-direction: column;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: auto;
+    width: 50%;
+}
+
+.filteredPokemonTypesContainer{
+    display: flex;
 }

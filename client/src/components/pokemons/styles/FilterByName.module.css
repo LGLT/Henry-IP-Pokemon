@@ -1,0 +1,23 @@
+.mainDiv{
+    display: flex;
+    margin: auto;
+}
+
+.inputSearch{
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 3px #ddd;
+    border-radius: 2px;
+    padding: 3px 8px 3px 8px;
+    font-size: 16px;
+}
+
+.btnSearch{
+    border: 1px solid transparent;
+    padding: 1px 15px 1px 15px;
+    font-size: 15px;
+    line-height: 1.5;
+    border-radius: .25rem;
+    background: #f8ea93;
+    cursor: pointer;
+    margin-left: 2px;
+}
