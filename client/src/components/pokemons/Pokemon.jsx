@@ -54,7 +54,7 @@ export default function Pokemon({name, id, info, localData, filtered}){
                                         {capitalize(name)}
                                     </Link>
                                 </div>
-                                <div><h3>Img not found.</h3> </div>
+                                <div className={styles.imgDiv}><h3>Img not found.</h3> </div>
                             </div>                        
                             <div className={styles.filteredPokemonTypesDiv}>
                                 <h5 className={styles.titleTypes}>Types:</h5>
@@ -80,7 +80,7 @@ export default function Pokemon({name, id, info, localData, filtered}){
                                 {capitalize(name)}
                             </Link>
                         </div>
-                        <h3>Img not found.</h3>
+                        <div className={styles.imgDiv}><h3>Img not found.</h3> </div>
                         <div className={styles.typesDiv}>
                             <h5 className={styles.titleTypes}>Types:</h5>
                             <div className={styles.typesContainer}>
@@ -111,7 +111,7 @@ export default function Pokemon({name, id, info, localData, filtered}){
                                         {capitalize(name)}
                                     </Link>
                                 </div>
-                                <div>
+                                <div className={styles.imgDiv}>
                                     <img src={info.data[0].sprites.front_default} alt="img" className={styles.img}/>
                                 </div>
                             </div>                        
@@ -139,7 +139,7 @@ export default function Pokemon({name, id, info, localData, filtered}){
                                     {capitalize(name)}
                                 </Link>
                             </div>
-                            <div>
+                            <div className={styles.imgDiv}>
                                 <img src={info.data[0].sprites.front_default} alt="img" className={styles.img}/>
                             </div>
                             <div className={styles.typesDiv}>

@@ -1,0 +1,74 @@
+.mainDiv{
+    background-image: url('../../../img/lab.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    padding-top: 5%;
+    background-size: 100% 100%;
+}
+
+.form{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-auto-flow: row;
+    grid-gap: .8em;
+    background: #eee;
+    padding: 1.2em;
+    text-align: center;
+    margin: 0 10% 0 55%;
+    border-radius: 10px;
+    border-style: solid;
+}
+
+.formLabel{
+    display: inline-block;
+    width: 125px;
+    text-align: left;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.formInput{
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 3px #ddd;
+    border-radius: 2px;
+    padding: 7px 65px 7px 25px;
+    font-size: 16px;
+}
+
+.formBtnNotActive{
+    display: flex;
+    justify-content: center;
+}
+
+.formBtn{
+    border: 1px solid lightgray;
+    padding: 0.375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    background: #f8ea93;
+    cursor: pointer;
+    margin: 3% 30% 0 30%;
+}
+
+.formSelect{
+    border: none;
+    font-size: 14px;
+    padding: 10px 22% 10px 22%;
+}
+
+.imgScientist{
+    width: 22%;
+    position: absolute;
+    top: 5%;
+    left: 15%;
+}
+
+.btnBack{
+    border: 1px solid lightgray;
+    font-size: 15px;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}

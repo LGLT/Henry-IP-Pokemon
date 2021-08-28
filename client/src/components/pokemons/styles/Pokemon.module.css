@@ -1,10 +1,10 @@
 .pokemonCard{
     display: flex;
     flex-direction: column;
-    background-color: #c2d5e4;
-    border-style: solid;
+    /* background-color: #eee; */
+    /* border-style: solid;
     border-width: 3px;
-    border-radius: 14px;
+    border-radius: 14px; */
 }
 
 .title{
@@ -17,6 +17,18 @@
 .titleDiv{
     display: flex;
     justify-content: center;
+    background-color: #eee;
+    border-radius: 15px;
+    padding: 0px 0 30px 0;
+    border-style: solid;
+    border-color: lightgray;
+    border-width: 2px;
+}
+
+.imgDiv{
+    margin-top: -35px;
+    position: relative;
+    z-index: 2;
 }
 
 .img{
@@ -26,13 +38,21 @@
     background-size: cover;
     margin-top: 10px;
     width: 100%;
-    border-top-style: solid;
     border-bottom-style: solid;
+    border-radius: 15px;
 }
 
 .typesDiv{
     display: flex;
     flex-direction: column;
+    background-color: #eee;
+    z-index: 1;
+    padding-top: 35px;
+    border-radius: 15px;
+    margin-top: -40px;
+    border-style: solid;
+    border-color: lightgray;
+    border-width: 2px;
 }
 
 .typesContainer{
@@ -73,8 +93,17 @@
     flex-direction: column;
     padding-left: 15px;
     padding-right: 15px;
-    margin: auto;
+    margin: aut;
     width: 50%;
+    background-color: #eee;
+    border-style: solid;
+    border-color: lightgray;
+    border-width: 2px;
+    border-radius: 15px;
+    margin-top: 10;
+    justify-content: inherit;
+    border-left: transparent;
+    margin-left: 4px;
 }
 
 .filteredPokemonTypesContainer{

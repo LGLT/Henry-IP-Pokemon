@@ -1,6 +1,7 @@
 import React from 'react';
-
 import { useSelector } from 'react-redux';
+
+import styles from './styles/PokemonDetails.module.css'
 
 export default function PokemonDetails(){
     const pokemonData = useSelector(store => store.actualPokemonData);
@@ -16,8 +17,10 @@ export default function PokemonDetails(){
         {
             pokemonData[0][2]
             ?
-            <div>{console.log(pokemonData)}
-                <h2>{capitalize(pokemonData[0][0])}</h2>
+            <div>
+                <div className={styles.title}>
+                    <h2>{capitalize(pokemonData[0][0])}</h2>
+                </div>
                 <img src={pokemonData[0][2].data[0].sprites.front_default} alt="img" />
                 <div> 
                     <h3>Stats</h3>

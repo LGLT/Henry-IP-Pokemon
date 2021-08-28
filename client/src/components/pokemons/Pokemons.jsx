@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom';
 
 import styles from './styles/Pokemons.module.css'
+import logo from '../../img/pokemonHenryApp.png'
 
 import {useDispatch, useSelector} from 'react-redux'
 import { addAllPokemonsToStore, setLoadFilteredPokemonByName } from '../../redux/actions';
@@ -66,16 +67,17 @@ export default function Pokemons(){
                             ? <Pokemon key={filteredPokemonByName[0].id} name={filteredPokemonByName[0].name} id={filteredPokemonByName[0].id} info={filteredPokemonByName[0].info} filtered={filteredPokemonByName[0]}/> 
                             : <Pokemon key={filteredPokemonByName[0].id} name={filteredPokemonByName[0].name} id={filteredPokemonByName[0].id} localData={filteredPokemonByName[0]} filtered={filteredPokemonByName[0]}/>
                     }
-                        <button onClick={() => dispatch(setLoadFilteredPokemonByName(false))}>X</button>
+                        <button onClick={() => dispatch(setLoadFilteredPokemonByName(false))} className={styles.filteredPokemonBtn}>X</button>
                     </div>
                     : 
                     <></> 
                 }
-                    
-                    <div className={styles.filtersContainer}>
-                        <Link to="/pokemons/createPokemon"><button className={styles.btnCreatePokemon}>Create Pokemon</button></Link>
-                        <FilterByName /> 
-                        <FilterByType />
+                    <div>
+                        <div className={styles.filtersContainer}>
+                            <Link to="/pokemons/createPokemon"><button className={styles.btnCreatePokemon}>Create Pokemon</button></Link>
+                            <FilterByName /> 
+                            <FilterByType />
+                        </div>
                     </div>
             </div>
                 <Pagination />         

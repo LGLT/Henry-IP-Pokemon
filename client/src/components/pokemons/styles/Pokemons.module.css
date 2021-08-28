@@ -5,7 +5,11 @@
 }
 
 .mainDiv{
-    background: #0076bc;
+    background-image: url('../../../img/background2.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    background-size: 100% 100%;
 }
 
 .filtersContainer{
@@ -31,4 +35,16 @@
 .filteredPokemonAndFilters{
     display: flex;
     flex-direction: column-reverse;
+}
+
+.filteredPokemonBtn{
+    display: flex;
+    margin: 0 0 255px 4px;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    background: #e64556;
+    cursor: pointer;
 }
