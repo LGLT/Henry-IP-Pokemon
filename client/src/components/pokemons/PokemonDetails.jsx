@@ -44,8 +44,10 @@ export default function PokemonDetails(){
             </div>
             :
             <div>
-                {console.log(pokemonData)}
-                <h2>{capitalize(pokemonData[0].name)}</h2>
+                {/* {console.log(pokemonData)} */}
+                <div className={styles.title}>
+                    <h2>{capitalize(pokemonData[0].name)}</h2>
+                </div>
                 {/* <img src={pokemonData[0].sprites.front_default} alt="img" /> */}
                 <div> 
                     <h3>Stats</h3>

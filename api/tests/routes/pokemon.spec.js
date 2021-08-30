@@ -16,9 +16,20 @@ describe('Pokemon routes', () => {
   }));
   beforeEach(() => Pokemon.sync({ force: true })
     .then(() => Pokemon.create(pokemon)));
+
+
   describe('GET /pokemons', () => {
-    it('should get 200', () =>
-      agent.get('/pokemons').expect(200)
-    );
+    it('should get 200', async (done) => {
+      const response = await agent.get('/pokemons')
+      done()
+    });
   });
+
+  describe('GET /:pokemonId', () => {
+    it('should get 200', async (done) =>{
+      const response = await agent.get('/10')
+      done()
+    });
+  });
+
 });

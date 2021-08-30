@@ -14,8 +14,8 @@ export default function PaginationChangePage({pokemonsPerPage, totalPokemons, pa
             <nav>
                 <ul className={styles.ul}>
                     {pageNumbers.map(number => (
-                        <li key={number}>
-                            <a onClick={() => paginate(number)} href="#0">{number}</a>
+                        <li onClick={() => paginate(number)} key={number} className={styles.li}>
+                            <a href="#0" style={{textDecoration: "none"}}>{number}</a>
                         </li>
                     ))}
                 </ul>

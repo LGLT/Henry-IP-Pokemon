@@ -3,3 +3,14 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(32px, 1fr));
 }
+
+.li{
+    display: flex;
+    justify-content: center;
+    border-style: solid;
+    border-color: #d7d7d7;
+    border-radius: 15px;
+    border-width: 2px;
+    background: #eee;
+    cursor: pointer;
+}

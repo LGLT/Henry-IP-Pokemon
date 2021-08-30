@@ -10,7 +10,7 @@ export default function Home(){
             <div className={styles.divTitle}>
                 <h1>Inside a Pokeball</h1>
             </div>
-            <Link to='/menu'><Pokeball /></Link>
+            <Link to='/pokemons'><Pokeball /></Link>
         </div>
     )
 }

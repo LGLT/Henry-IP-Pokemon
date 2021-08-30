@@ -78,7 +78,7 @@ export default function CreatePokemon () {
                             <option value="fairy">fairy</option>
                         </select>
                     </div>
-                    {displayButton ? <button type="submit" className={styles.formBtn} onClick={() => alert('Pokemon successfully created')}>CREATE</button> : <p className={styles.formBtnNotActive}>Termine de rellenar los datos</p> }
+                    {displayButton ? <button type="submit" className={styles.formBtn} onClick={() => alert('Pokemon successfully created')}>CREATE</button> : <p className={styles.formBtnNotActive}>Finish entering the data.</p> }
                     <div><Link to="/pokemons"><button className={styles.btnBack}>Back</button></Link></div>
                 </form>
                     <img src={scientist} alt="scientist" className={styles.imgScientist}/>

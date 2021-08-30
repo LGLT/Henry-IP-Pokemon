@@ -14,6 +14,27 @@ const generatorId = () => {
 
 /*################# GET TODOS LOS POKEMONS #################*/ 
 router.get('/', async (req, res) => {
+  if(req.query.name){
+    try{
+      let apiResponse = await axios({
+        url: `https://pokeapi.co/api/v2/pokemon/${req.query.name}`,
+        method: 'get'
+      });
+      console.log(req.query.name)
+      return res.status(200).json(apiResponse.data);
+  
+    } catch (error){
+        const localPokemon = await Pokemon.findAll({
+          where:{
+            name: req.query.name
+          },
+        });
+        console.log(localPokemon)
+        if(localPokemon.length>0) return res.status(200).json(localPokemon);
+      // console.log(pokemonCreated)
+      return res.status(500).json({ message: error });
+    }
+  } 
     try{
       let apiResponse = await axios({
         url: 'https://pokeapi.co/api/v2/pokemon',
@@ -81,33 +102,72 @@ router.get('/', async (req, res) => {
     
   });
 
+  // router.get('/?name=pokemonName', async (req, res) => {
+  //   const { name } = req.query;
+
+  //   if(name){
+  //     try{
+  //       let apiResponse = await axios({
+  //         url: `https://pokeapi.co/api/v2/pokemon/${name}`,
+  //         method: 'get'
+  //       });
+  //       console.log(name)
+  //       res.status(200).json(apiResponse.data);
+    
+  //     } catch (error){
+  //       // const [pokemon, pokemonCreated] = await Pokemon.findOrCreate({
+  //       //   where: {
+  //       //     name,
+  //       //   }
+  //       // });
+  //       // console.log(pokemonCreated)
+  //       res.status(500).json({ message: error });
+  //     }
+  //   }
+    
+  // });
+
   /*################# CREAR UN NUEVO POKEMON #################*/ 
   router.post('/', async function(req, res) {
-    const {name, vida, fuerza, defensa, velocidad, altura, peso, tipo} = req.body;
+    const {name, hp, attack, defense, speed, height, weight, pokemonType} = req.body;
+
+    console.log(pokemonType)
 
     const [pokemon, pokemonCreated] = await Pokemon.findOrCreate({
       where: {
         id: generatorId(),
         name,
-        vida,
-        fuerza,
-        defensa,
-        velocidad,
-        altura,
-        peso
+        hp,
+        attack,
+        defense,
+        speed,
+        height,
+        weight
       }
     });
-
-    const [type, typeCreated] = await Type.findOrCreate({
-      where: {
-        name: tipo
+    
+    if(Array.isArray(pokemonType)){
+      for(let i=0; i<pokemonType.length; i++){
+        const [type, typeCreated] = await Type.findOrCreate({
+          where: {
+            name: pokemonType[i]
+          }
+        });
+        await pokemon.addType(type);
+        await type.addPokemon(pokemon);
       }
-    });
-
-    await pokemon.addType(type);
-    await type.addPokemon(pokemon);
+    } else{
+      const [type, typeCreated] = await Type.findOrCreate({
+        where: {
+          name: pokemonType
+        }
+      });
+  
+      await pokemon.addType(type);
+      await type.addPokemon(pokemon);
+    }
     console.log([pokemonsId[pokemonsId.length-1]])
-    res.redirect("http://localhost:3000/pokemons")
+    res.status(200).redirect('http://localhost:3000/pokemons/createPokemon');
   })
 
   module.exports = router;

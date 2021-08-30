@@ -5,11 +5,7 @@
 }
 
 .mainDiv{
-    background-image: url('../../../img/background2.jpg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 100%;
-    background-size: 100% 100%;
+    background: #0077bc;
 }
 
 .filtersContainer{

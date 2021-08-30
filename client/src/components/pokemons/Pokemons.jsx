@@ -81,6 +81,9 @@ export default function Pokemons(){
                     </div>
             </div>
                 <Pagination />         
+                <div style={{visibility: "hidden", marginTop:"0px"}}>
+                    &nbsp;
+                </div>
             </div>
         );
     }
