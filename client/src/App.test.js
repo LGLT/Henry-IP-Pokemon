@@ -1,23 +1,30 @@
 import React from "react";
 import '@testing-library/jest-dom/extend-expect'
 import { BrowserRouter } from 'react-router-dom';
-import {render} from '@testing-library/react'
+import {getByAltText, render} from '@testing-library/react'
 
 import Home from '../src/components/Home'
 
-test('renders content', () => {
-    const component = render(
-      <BrowserRouter>
-        <Home />
-      </BrowserRouter>
-    )
+test('renders logo', () => {
 
-    expect(component.container).toHaveTextContent('Inside a Pokeball')
+  const { getByAltText } =  render(
+    <BrowserRouter>
+      <Home />
+    </BrowserRouter>
+  );
+
+    const image = getByAltText('PHA_logo');
+    expect(image.src).toContain('http://localhost/pokemonHenryApp.png');
+    
+    // const component = render(
+    //   <BrowserRouter>
+    //     <Home />
+    //   </BrowserRouter>
+    // );
+    // expect(component.container).toHaveTextContent('Inside a Pokeball')
 })
 
 // import Pokemons from "./src/components/pokemons/Pokemons";
-
-
 // it("Does component renders child component correctly based on type?", () => {
 //     const component = shallow(<Pokemons/>);
 //     console.log(component.debug());
