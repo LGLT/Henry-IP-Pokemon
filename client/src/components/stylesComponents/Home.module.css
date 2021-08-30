@@ -8,8 +8,18 @@
 }
 
 .divTitle{
-    display: flex;
-    justify-content: center;
-    margin-top: -40pc;
+    text-align: center;
+    margin: 5% 20% 0 20%;
 }
 
+.divLogo{
+    display: flex;
+    justify-content: center;
+    margin-top: -40%;
+}
+
+.divPokeball{
+    display: flex;
+    justify-content: center;
+    margin-top: 4%;
+}

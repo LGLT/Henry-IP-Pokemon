@@ -1,6 +1,6 @@
-import React, { useState} from 'react';
+import React from 'react';
 
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 
 import { addFilterType } from '../../redux/actions';
 
@@ -8,7 +8,6 @@ import styles from './styles/FilterByType.module.css'
 
 export default function FilterByType() {
     const dispatch = useDispatch()
-    const filterByType = useSelector(store => store.filterByType);
 
     const functionFilterBy = (event) => {
         event.preventDefault();

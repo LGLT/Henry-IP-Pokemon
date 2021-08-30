@@ -44,3 +44,21 @@
     background: #e64556;
     cursor: pointer;
 }
+
+.mainDivLoading{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 10%;
+}
+
+.divLoadingGif{
+    display: flex;
+    justify-content: center;
+}
+
+.divLoading{
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+}

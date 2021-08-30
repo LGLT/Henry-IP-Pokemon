@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom';
 
 import styles from './styles/Pokemons.module.css'
-import logo from '../../img/pokemonHenryApp.png'
+import loadingGif from '../../img/loading.gif'
 
 import {useDispatch, useSelector} from 'react-redux'
 import { addAllPokemonsToStore, setLoadFilteredPokemonByName } from '../../redux/actions';
@@ -13,11 +13,9 @@ import FilterByType from './FilterByType';
 import FilterByName from './FilterByName';
 
 export default function Pokemons(){
-    //  Variables exclusivas del componente
     const [loading, setLoading] = useState(true);
-    //  Hook para el dispatch
     const dispatch = useDispatch()
-    //  Hooks para obtener los valores de la store
+
     // const pokemonsfromStore = useSelector(store => store.allStorePokemons);
     const loadStorePokemons = useSelector(store => store.loadStorePokemons);
     const filteredPokemonByName = useSelector(store => store.filteredPokemonByName);
@@ -50,7 +48,14 @@ export default function Pokemons(){
     
 
     if(loading){
-        return(<div>Loading...</div>);
+        return(
+        <div>
+            <div className={styles.mainDivLoading}>
+                <div className={styles.divLoadingGif}><img src={loadingGif} alt="" style={{width: "15%"}} /></div>
+                <div className={styles.divLoading}>Loading data...</div>
+            </div>
+        </div>
+        )
     }
     
     if(!loading){
@@ -72,13 +77,13 @@ export default function Pokemons(){
                     : 
                     <></> 
                 }
-                    <div>
-                        <div className={styles.filtersContainer}>
-                            <Link to="/pokemons/createPokemon"><button className={styles.btnCreatePokemon}>Create Pokemon</button></Link>
-                            <FilterByName /> 
-                            <FilterByType />
-                        </div>
+                <div>
+                    <div className={styles.filtersContainer}>
+                        <Link to="/pokemons/createPokemon"><button className={styles.btnCreatePokemon}>Create Pokemon</button></Link>
+                        <FilterByName /> 
+                        <FilterByType />
                     </div>
+                </div>
             </div>
                 <Pagination />         
                 <div style={{visibility: "hidden", marginTop:"0px"}}>

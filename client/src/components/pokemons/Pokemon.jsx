@@ -11,7 +11,6 @@ import icons from './importTypesIcons'
 
 export default function Pokemon({name, id, info, localData, filtered}){
     const [pokemonData, setPokemonData] = useState()
-    const [type, setType] = useState("")
     const dispatch = useDispatch()
 
     useEffect(() => {

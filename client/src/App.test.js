@@ -6,14 +6,10 @@ import {render} from '@testing-library/react'
 import Home from '../src/components/Home'
 
 test('renders content', () => {
-    const note = {
-        content: 'This is a test',
-        important: true
-    }
     const component = render(
       <BrowserRouter>
-      <Home />
-    </BrowserRouter>
+        <Home />
+      </BrowserRouter>
     )
 
     expect(component.container).toHaveTextContent('Inside a Pokeball')
