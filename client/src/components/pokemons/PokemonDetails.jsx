@@ -63,35 +63,35 @@ export default function PokemonDetails(){
                     <h2>{capitalize(pokemonData[0].name)}</h2>
                 </div>
                 {/* <img src={pokemonData[0].sprites.front_default} alt="img" /> */}
-                <div> 
+                <div className={styles.divStats}> 
                     <h3>Stats</h3>
-                    <div>
-                        <div>
-                            <h4>Pokemon ID:</h4>
+                    <div className={styles.secondDivStats}>
+                        <div className={styles.stat}>
+                            <h4 style={{fontWeight: "400"}}>Pokemon ID:</h4>
                             <p>{pokemonData[0].id}</p>
                         </div>
-                        <div>
-                            <h4>Health Points (HP):</h4>
+                        <div className={styles.stat}>
+                            <h4 style={{fontWeight: "400"}}>Health Points (HP):</h4>
                             <p>{pokemonData[0].hp}</p>
                         </div>
-                        <div>
-                            <h4>Attack:</h4>
+                        <div className={styles.stat}>
+                            <h4 style={{fontWeight: "400"}}>Attack:</h4>
                             <p>{pokemonData[0].attack}</p>
                         </div>
-                        <div>
-                            <h4>Defense:</h4>
+                        <div className={styles.stat}>
+                            <h4 style={{fontWeight: "400"}}>Defense:</h4>
                             <p>{pokemonData[0].defense}</p>
                         </div>
-                        <div>
-                            <h4>Speed:</h4>
+                        <div className={styles.stat}>
+                            <h4 style={{fontWeight: "400"}}>Speed:</h4>
                             <p>{pokemonData[0].speed}</p>
                         </div>
-                        <div>
-                            <h4>Height:</h4>
+                        <div className={styles.stat}>
+                            <h4 style={{fontWeight: "400"}}>Height:</h4>
                             <p>{pokemonData[0].height}</p>
                         </div>
-                        <div>
-                            <h4>weight:</h4>
+                        <div className={styles.stat}>
+                            <h4 style={{fontWeight: "400"}}>weight:</h4>
                             <p>{pokemonData[0].weight}</p>
                         </div>
                     </div>
