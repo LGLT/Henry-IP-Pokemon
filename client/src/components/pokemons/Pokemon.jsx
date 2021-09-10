@@ -26,7 +26,6 @@ export default function Pokemon({name, id, info, localData, filtered}){
         dispatch(addActualPokemonData(pokemonData))
     }
 
-    //  Método para cambiar la primera letra del pokemon a mayúscula
     const capitalize = (name) =>{
         let mayus = name.slice(0,1);
         name = name.slice(1,name.length);
@@ -53,7 +52,7 @@ export default function Pokemon({name, id, info, localData, filtered}){
                                         {capitalize(name)}
                                     </Link>
                                 </div>
-                                <div className={styles.imgDiv}><h3>Img not found.</h3> </div>
+                                <div className={styles.imgDiv}><h3 style={{textAlign: "center"}}>Img not found</h3> </div>
                             </div>                        
                             <div className={styles.filteredPokemonTypesDiv}>
                                 <h5 className={styles.titleTypes}>Types:</h5>
@@ -61,7 +60,7 @@ export default function Pokemon({name, id, info, localData, filtered}){
                                     {
                                     localData.types.map(t => 
                                         {return (
-                                            <div className={styles.typeContainer}>
+                                            <div key={t.name} className={styles.typeContainer}>
                                                 <p key={t.name}>{capitalize(t.name)}</p> 
                                                     {findIcon(t.name)}
                                             </div>
@@ -79,14 +78,14 @@ export default function Pokemon({name, id, info, localData, filtered}){
                                 {capitalize(name)}
                             </Link>
                         </div>
-                        <div className={styles.imgDiv}><h3>Img not found.</h3> </div>
+                        <div className={styles.imgDiv}><h3 style={{textAlign: "center"}}>Img not found</h3> </div>
                         <div className={styles.typesDiv}>
                             <h5 className={styles.titleTypes}>Types:</h5>
                             <div className={styles.typesContainer}>
                                 {
                                 localData.types.map(t => 
                                     {return (
-                                        <div className={styles.typeContainer}>
+                                        <div key={t.name} className={styles.typeContainer}>
                                             <p key={t.name}>{capitalize(t.name)}</p> 
                                                 {findIcon(t.name)}
                                         </div>
@@ -120,7 +119,7 @@ export default function Pokemon({name, id, info, localData, filtered}){
                                     {
                                     info.data[0].types.map(t => 
                                         {return (
-                                            <div className={styles.typeContainer}>
+                                            <div key={t.type.name} className={styles.typeContainer}>
                                                 <p key={t.type.name}>{capitalize(t.type.name)}</p> 
                                                 {findIcon(t.type.name)}
                                             </div>
@@ -147,7 +146,7 @@ export default function Pokemon({name, id, info, localData, filtered}){
                                     {
                                     info.data[0].types.map(t => 
                                         {return (
-                                            <div className={styles.typeContainer}>
+                                            <div key={t.type.name} className={styles.typeContainer}>
                                                 <p key={t.type.name}>{capitalize(t.type.name)}</p> 
                                                 {findIcon(t.type.name)}
                                             </div>
@@ -158,7 +157,11 @@ export default function Pokemon({name, id, info, localData, filtered}){
                             </div>
                         </>
                     :
-                    <h6>Loading data...</h6>                    
+                    <>
+                        <div>
+                            <img src={"https://media4.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=790b7611f2ab0d1216b5b3958f82490037b3a498a23c29d3&rid=giphy.gif&ct=g"} alt="img" className={styles.img} />
+                        </div>
+                    </>                    
             }
         </div>
         );

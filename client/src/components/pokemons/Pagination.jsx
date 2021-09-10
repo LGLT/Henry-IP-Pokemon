@@ -68,12 +68,10 @@ export default function Pagination () {
                     return filteredPokemons;
                 }
                 pokemonsfromStore[0].forEach( p => {
-                    // console.log(p)
                     if(p.url) p.info.data[0].types.forEach( t => t.type.name === filter ?  filteredPokemons.push(p) : 0 )
                 })
                 return filteredPokemons;
             }
-            // pokemonsfromStore[0].slice(indexOfFirstPokemon, indexOfLastPokemon).map(p => p.info ? console.log(p.info) : console.log(10))
             return pokemonsfromStore[0].slice(indexOfFirstPokemon, indexOfLastPokemon)
         }
     } 

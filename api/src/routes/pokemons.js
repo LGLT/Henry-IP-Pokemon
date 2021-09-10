@@ -154,7 +154,7 @@ router.get('/', async (req, res) => {
           }
         });
         await pokemon.addType(type);
-        await type.addPokemon(pokemon);
+        // await type.addPokemon(pokemon);
       }
     } else{
       const [type, typeCreated] = await Type.findOrCreate({
@@ -164,7 +164,7 @@ router.get('/', async (req, res) => {
       });
   
       await pokemon.addType(type);
-      await type.addPokemon(pokemon);
+      // await type.addPokemon(pokemon);
     }
     console.log([pokemonsId[pokemonsId.length-1]])
     res.status(200).redirect('http://localhost:3000/pokemons/createPokemon');

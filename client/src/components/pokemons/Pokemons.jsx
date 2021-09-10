@@ -31,7 +31,6 @@ export default function Pokemons(){
         if(loadStorePokemons === false){
             const getPokemons = async () => {
                 await axios.get('http://localhost:3001/pokemons')
-                    // .then(async data => await data.data.slice(0,40))
                     .then(async data => await data.data.slice(0))
                     .then(async data => {
                         await data.map(async p => p.url ? p.info = await axios.get(`http://localhost:3001/pokemons/${p.id}`) : 0);
@@ -61,7 +60,6 @@ export default function Pokemons(){
     if(!loading){
         return(
             <div className={styles.mainDiv}>
-            {/* {console.log(pokemonsfromStore[0])} */}
             <div className={styles.filteredPokemonAndFilters}>
                 {
                     loadFilteredPokemonByName

@@ -16,12 +16,11 @@ export default function FilterByType() {
         return
     }
     
-    
     return (
         <div className={styles.mainDiv}>
             <form onSubmit={functionFilterBy}>
                 <select onChange={functionFilterBy} name="filterBy" id="filterBy" className={styles.select}>
-                    <option hidden selected>Filter options</option>
+                    <option hidden>Filter options</option>
                     <option value="none">None</option>
                     <option value="created">Created Pokemon</option>
                     <option value="name">Name (ASC)</option>
