@@ -1,4 +1,4 @@
-# Pokemon Henry App
+<!-- # Pokemon Henry App -->
 
 <p align="left">
   <img height="150" src="./client/src/img/pokemonHenryApp.png" />
